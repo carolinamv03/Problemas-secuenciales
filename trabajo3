@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Descuento e IVA</title>
+  <h1><center>Carolina Martinez </center></h1>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f1f8e9, #dcedc8);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #558b2f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 500px;
+      background-color: white;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #558b2f;
+      text-align: center;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #558b2f;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #33691e;
+    }
+    #resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f1f8e9;
+      border-left: 5px solid #558b2f;
+      font-weight: bold;
+    }
+    .imagen {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .imagen img {
+      max-width: 100px;
+      transition: transform 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Descuento e IVA</h1>
+    <p>Calculadora de precio final con descuento del 20% e IVA del 15%</p>
+  </header>
+
+  <div class="container">
+    <div class="imagen">
+      <img id="carrito" src="https://previews.123rf.com/images/rastudio/rastudio1710/rastudio171000594/88349371-carrito-de-compras-del-carro-de-supermercado-ilustraci%C3%B3n-vectorial-aislado-en-el-fondo-blanco.jpg" alt="Carrito de compras">
+    </div>
+    <h2>Ingresa el precio del producto</h2>
+    <label for="precio">Precio original:</label>
+    <input type="number" id="precio" placeholder="Ej: 500" min="0">
+    <button onclick="calcularPrecio()">Calcular precio final</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularPrecio() {
+      const precio = parseFloat(document.getElementById('precio').value);
+      const resultadoDiv = document.getElementById('resultado');
+      const imagen = document.getElementById('carrito');
+
+      if (isNaN(precio) || precio < 0) {
+        resultadoDiv.textContent = 'Ingrese un precio válido.';
+        resultadoDiv.style.backgroundColor = '#ffcdd2';
+        resultadoDiv.style.borderLeftColor = '#d32f2f';
+        return;
+      }
+
+      const descuento = 0.20;
+      const iva = 0.15;
+      const precioConDescuento = precio * (1 - descuento);
+      const precioFinal = precioConDescuento * (1 + iva);
+
+      resultadoDiv.style.backgroundColor = '#f1f8e9';
+      resultadoDiv.style.borderLeftColor = '#558b2f';
+      resultadoDiv.innerHTML = `
+        Precio con 20% de descuento: $${precioConDescuento.toFixed(2)} MXN<br>
+        Precio final con 15% de IVA: <strong>$${precioFinal.toFixed(2)} MXN</strong>
+      `;
+
+      // Cambiar imagen al hacer clic
+      imagen.src = 'https://www.shutterstock.com/image-vector/supermarket-cart-filled-groceries-dairy-600nw-2512498725.jpg'; // imagen distinta del carrito
+      imagen.alt = 'Compra realizada';
+      imagen.style.transform = 'scale(1.1)';
+    }
+  </script>
+</body>
+</html>
