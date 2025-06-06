@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Área de un Cuadrado</title>
+  <h1><center>Carolina Martinez </center></h1>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fce4ec, #f8bbd0);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #c2185b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 500px;
+      background-color: white;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #c2185b;
+      text-align: center;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #c2185b;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #ad1457;
+    }
+    #resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fce4ec;
+      border-left: 5px solid #c2185b;
+      font-weight: bold;
+    }
+    .imagen {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .imagen img {
+      max-width: 100px;
+      transition: transform 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Área de un Cuadrado</h1>
+    <p>Calculadora con fórmula: área = lado × lado</p>
+  </header>
+
+  <div class="container">
+    <div class="imagen">
+      <img id="cuadro" src="https://www.reino-minerales.es/wp-content/uploads/2025/02/carre-01.jpg" alt="Cuadro simple">
+    </div>
+    <h2>Ingresa el valor del lado</h2>
+
+    <label for="lado">Lado del cuadrado (cm):</label>
+    <input type="number" id="lado" placeholder="Ej: 5" min="0">
+
+    <button onclick="calcularArea()">Calcular área</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularArea() {
+      const lado = parseFloat(document.getElementById('lado').value);
+      const resultadoDiv = document.getElementById('resultado');
+      const imagen = document.getElementById('cuadro');
+
+      if (isNaN(lado) || lado < 0) {
+        resultadoDiv.textContent = 'Ingrese un valor válido para el lado.';
+        resultadoDiv.style.backgroundColor = '#ffcdd2';
+        resultadoDiv.style.borderLeftColor = '#d32f2f';
+        return;
+      }
+
+      const area = lado * lado;
+
+      resultadoDiv.style.backgroundColor = '#fce4ec';
+      resultadoDiv.style.borderLeftColor = '#c2185b';
+      resultadoDiv.innerHTML = `
+        Área del cuadrado: <strong>${area.toFixed(2)} cm²</strong>
+      `;
+
+      // Cambiar imagen
+      imagen.src = 'https://s1.significados.com/foto/cuadrado-og.jpg?class=ogImageRectangle'; // cuadrado lleno
+      imagen.alt = 'Área calculada';
+      imagen.style.transform = 'scale(1.1)';
+    }
+  </script>
+</body>
+</html>
