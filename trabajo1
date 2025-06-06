@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CONAGUA - Consumo de Agua</title>
+  <h1><center>Carolina Martinez</center></h1>
+  <style>
+    * { 
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #b2ebf2, #e0f7fa);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 500px;
+      background-color: white;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #00796b;
+      text-align: center;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #004d40;
+    }
+    #resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e0f2f1;
+      border-left: 5px solid #00796b;
+      font-weight: bold;
+    }
+    .imagen {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .imagen img {
+      max-width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CONAGUA</h1>
+    <p>Calculadora de consumo de agua</p>
+  </header>
+
+  <div class="container">
+    <div class="imagen">
+      <img src="https://cdn-icons-png.flaticon.com/512/728/728093.png" alt="Agua">
+    </div>
+    <h2>¿Cuánto debo pagar?</h2>
+    <label for="metros">Metros cúbicos consumidos:</label>
+    <input type="number" id="metros" placeholder="Ej: 50" min="0">
+    <button onclick="calcularPago()">Calcular pago</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularPago() {
+      const metros = parseFloat(document.getElementById('metros').value);
+      const precioPorMetro = 10;
+      const resultadoDiv = document.getElementById('resultado');
+
+      if (isNaN(metros) || metros < 0) {
+        resultadoDiv.textContent = 'Ingrese un valor válido.';
+        resultadoDiv.style.backgroundColor = '#ffcdd2';
+        resultadoDiv.style.borderLeftColor = '#d32f2f';
+        return;
+      }
+
+      const total = metros * precioPorMetro;
+      resultadoDiv.textContent = `Total a pagar: $${total.toFixed(2)} MXN`;
+      resultadoDiv.style.backgroundColor = '#e0f2f1';
+      resultadoDiv.style.borderLeftColor = '#00796b';
+    }
+  </script>
+</body>
+</html>
