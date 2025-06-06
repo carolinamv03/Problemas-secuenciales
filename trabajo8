@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Promedio de Alumno</title>
+  <h1><center>Carolina Martinez </center></h1>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fff8e1, #ffe082);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #fbc02d;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .imagen {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .imagen img {
+      max-width: 100px;
+      transition: transform 0.5s;
+    }
+    h2 {
+      text-align: center;
+      color: #fbc02d;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #fbc02d;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #f9a825;
+    }
+    #resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fff8e1;
+      border-left: 5px solid #fbc02d;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Promedio de Alumno</h1>
+    <p>Calculadora de promedio con ponderaciones</p>
+  </header>
+
+  <div class="container">
+    <div class="imagen">
+      <img id="libro" src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" alt="Libro de notas">
+    </div>
+
+    <label for="e1">Examen 1 (25%):</label>
+    <input type="number" id="e1" placeholder="Ej: 80" min="0" max="100">
+
+    <label for="e2">Examen 2 (25%):</label>
+    <input type="number" id="e2" placeholder="Ej: 90" min="0" max="100">
+
+    <label for="e3">Examen 3 (50%):</label>
+    <input type="number" id="e3" placeholder="Ej: 70" min="0" max="100">
+
+    <button onclick="calcularPromedio()">Calcular promedio</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularPromedio() {
+      const e1 = parseFloat(document.getElementById('e1').value);
+      const e2 = parseFloat(document.getElementById('e2').value);
+      const e3 = parseFloat(document.getElementById('e3').value);
+      const resultado = document.getElementById('resultado');
+      const img = document.getElementById('libro');
+
+      if ([e1, e2, e3].some(n => isNaN(n) || n < 0 || n > 100)) {
+        resultado.textContent = 'Ingrese calificaciones válidas entre 0 y 100.';
+        resultado.style.backgroundColor = '#ffcdd2';
+        resultado.style.borderLeftColor = '#d32f2f';
+        return;
+      }
+
+      const promedio = e1 * 0.25 + e2 * 0.25 + e3 * 0.5;
+      resultado.innerHTML = `Promedio final: <strong>${promedio.toFixed(2)}</strong>`;
+      resultado.style.backgroundColor = '#fff8e1';
+      resultado.style.borderLeftColor = '#fbc02d';
+
+      img.src = 'https://cdn-icons-png.flaticon.com/512/3135/3135768.png';
+      img.alt = 'Calificación lista';
+      img.style.transform = 'scale(1.1)';
+    }
+  </script>
+</body>
+</html>
