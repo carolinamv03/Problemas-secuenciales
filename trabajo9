@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tiempo Vivido</title>
+  <h1><center>Carolina Martinez </center></h1>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e1f5fe, #b3e5fc);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0288d1;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .imagen {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .imagen img {
+      max-width: 100px;
+      transition: transform 0.5s;
+    }
+    h2 {
+      color: #0288d1;
+      text-align: center;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e1f5fe;
+      border-left: 5px solid #0288d1;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tiempo Vivido</h1>
+    <p>Calcula aproximadamente cuántos meses, semanas, días y horas has vivido</p>
+  </header>
+
+  <div class="container">
+    <div class="imagen">
+      <img id="reloj" src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" alt="Calendario">
+    </div>
+    <label for="fecha">Fecha de nacimiento:</label>
+    <input type="date" id="fecha">
+    <button onclick="calcularVida()">Calcular</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularVida() {
+      const fecha = new Date(document.getElementById("fecha").value);
+      const hoy = new Date();
+      const img = document.getElementById("reloj");
+      const resultado = document.getElementById("resultado");
+
+      if (isNaN(fecha)) {
+        resultado.textContent = "Ingresa una fecha válida.";
+        resultado.style.backgroundColor = '#ffcdd2';
+        return;
+      }
+
+      const tiempo = hoy - fecha;
+      const dias = Math.floor(tiempo / (1000 * 60 * 60 * 24));
+      const semanas = Math.floor(dias / 7);
+      const meses = Math.floor(dias / 30.4);
+      const horas = dias * 24;
+
+      resultado.innerHTML = `
+        Has vivido aproximadamente:<br>
+        <strong>${meses} meses</strong><br>
+        <strong>${semanas} semanas</strong><br>
+        <strong>${dias} días</strong><br>
+        <strong>${horas} horas</strong>
+      `;
+
+      img.src = 'https://cdn-icons-png.flaticon.com/512/6820/6820551.png';
+      img.alt = 'Tiempo calculado';
+      img.style.transform = 'scale(1.1)';
+    }
+  </script>
+</body>
+</html>
